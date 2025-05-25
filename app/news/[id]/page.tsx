@@ -1,16 +1,11 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+import { Breadcrumb } from "@/components/ui/breadcrumb"
 import { Home, Calendar, Tag, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
 import type { Metadata } from "next"
 import { getNewsArticle, getNewsArticles } from "@/lib/news"
+import { useTranslation } from "@/components/translation-provider"
 
 type Props = {
   params: { id: string }
@@ -42,6 +37,7 @@ export async function generateStaticParams() {
 export default async function NewsArticlePage({ params }: Props) {
   const { id } = params
   const article = await getNewsArticle(id)
+  const t = useTranslation()
 
   if (!article) {
     return (
@@ -58,23 +54,10 @@ export default async function NewsArticlePage({ params }: Props) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Breadcrumb className="mb-6">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">
-              <Home className="h-4 w-4" />
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/news">News</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href={`/news/${id}`}>Article</BreadcrumbLink>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <Breadcrumb items={[
+        { label: "news", href: "/news" },
+        { label: "news_article", href: `/news/${id}` }
+      ]} />
 
       <Button asChild variant="outline" className="mb-6">
         <Link href="/news">

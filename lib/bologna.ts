@@ -244,4 +244,12 @@ const bolognaArticles = {
   },
 }
 
+export function getBolognaArticle(slug: string) {
+  return bolognaArticles[slug as keyof typeof bolognaArticles];
+}
+
+export function getBolognaArticles() {
+  return Object.values(bolognaArticles);
+}
+
 export default bolognaArticles;

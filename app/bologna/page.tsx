@@ -1,10 +1,5 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+import { Breadcrumb } from "@/components/ui/breadcrumb"
+import { useTranslation } from "@/components/translation-provider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Home } from "lucide-react"
 import BolognaOverview from "@/components/bologna/bologna-overview"
@@ -13,24 +8,17 @@ import BolognaQualifications from "@/components/bologna/bologna-qualifications"
 import BolognaReports from "@/components/bologna/bologna-reports"
 
 export default function BolognaPage() {
+  const t = useTranslation()
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <Breadcrumb className="mb-6">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">
-              <Home className="h-4 w-4" />
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/bologna">Bologna Process</BreadcrumbLink>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <Breadcrumb items={[
+        { label: "bologna_process", href: "/bologna" }
+      ]} />
 
+      <h1 className="text-3xl font-bold mb-6">{t("bologna_process")}</h1>
+      
       <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">Bologna Process</h1>
         <p className="text-lg text-gray-600">
           The Bologna Process is an intergovernmental higher education reform process that includes 49 European
           countries and a number of European organizations. Its main goal is to enhance the quality and recognition of

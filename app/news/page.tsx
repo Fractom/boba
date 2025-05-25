@@ -13,26 +13,20 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import NewsCard from "@/components/news/news-card"
 import FeaturedNewsCard from "@/components/news/featured-news-card"
+import { useTranslation } from "@/components/translation-provider"
 
 export default function NewsPage() {
+  const t = useTranslation()
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <Breadcrumb className="mb-6">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">
-              <Home className="h-4 w-4" />
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/news">News and Announcements</BreadcrumbLink>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <Breadcrumb items={[
+        { label: "news", href: "/news" }
+      ]} />
+
+      <h1 className="text-3xl font-bold mb-6">{t("news")}</h1>
 
       <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">News and Announcements</h1>
         <p className="text-lg text-gray-600">
           Stay updated with the latest news, events, and announcements from our center.
         </p>

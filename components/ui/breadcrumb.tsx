@@ -11,30 +11,54 @@ interface BreadcrumbProps {
   }[]
 }
 
+export function BreadcrumbList({ children }: { children: React.ReactNode }) {
+  return (
+    <nav className="flex items-center space-x-1 text-sm text-gray-500">
+      {children}
+    </nav>
+  )
+}
+
+export function BreadcrumbItem({ children }: { children: React.ReactNode }) {
+  return <div className="flex items-center">{children}</div>
+}
+
+export function BreadcrumbLink({ href, children, isLast = false }: { href: string; children: React.ReactNode; isLast?: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={`hover:text-gray-700 transition-colors ${
+        isLast ? "text-gray-900 font-medium" : ""
+      }`}
+    >
+      {children}
+    </Link>
+  )
+}
+
+export function BreadcrumbSeparator() {
+  return <ChevronRight className="h-4 w-4 mx-1" />
+}
+
+// Legacy support
 export function Breadcrumb({ items = [] }: BreadcrumbProps) {
   const t = useTranslation()
   
   return (
-    <nav className="flex items-center space-x-1 text-sm text-gray-500">
-      <Link
-        href="/"
-        className="flex items-center hover:text-gray-700 transition-colors"
-      >
-        <Home className="h-4 w-4" />
-      </Link>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">
+          <Home className="h-4 w-4" />
+        </BreadcrumbLink>
+      </BreadcrumbItem>
       {items.map((item, index) => (
-        <div key={item.href} className="flex items-center">
-          <ChevronRight className="h-4 w-4 mx-1" />
-          <Link
-            href={item.href}
-            className={`hover:text-gray-700 transition-colors ${
-              index === items.length - 1 ? "text-gray-900 font-medium" : ""
-            }`}
-          >
+        <BreadcrumbItem key={item.href}>
+          <BreadcrumbSeparator />
+          <BreadcrumbLink href={item.href} isLast={index === items.length - 1}>
             {t(item.label)}
-          </Link>
-        </div>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
       ))}
-    </nav>
+    </BreadcrumbList>
   )
 }

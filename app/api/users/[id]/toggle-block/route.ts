@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs"
+import { currentUser } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
@@ -6,14 +6,19 @@ export async function POST(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const { userId } = auth()
-  if (!userId) {
+  const user = await currentUser()
+  if (!user) {
     return new NextResponse("Unauthorized", { status: 401 })
   }
 
   try {
+    const targetUserId = params.id
+
+    // В реальном приложении здесь должна быть логика блокировки через API Clerk
+    // или вашу базу данных
+
     const currentUser = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id: user.id },
       select: { role: true }
     })
 
@@ -23,7 +28,7 @@ export async function POST(
     }
 
     const targetUser = await prisma.user.findUnique({
-      where: { id: params.id },
+      where: { id: targetUserId },
       select: { role: true, status: true }
     })
 
@@ -42,7 +47,7 @@ export async function POST(
     }
 
     const updatedUser = await prisma.user.update({
-      where: { id: params.id },
+      where: { id: targetUserId },
       data: {
         status: targetUser.status === "ACTIVE" ? "BLOCKED" : "ACTIVE"
       }
@@ -50,7 +55,7 @@ export async function POST(
 
     return NextResponse.json(updatedUser)
   } catch (error) {
-    console.error("Error toggling user block status:", error)
+    console.error("Error toggling block:", error)
     return new NextResponse("Internal Server Error", { status: 500 })
   }
 } 

@@ -1,17 +1,17 @@
-import { auth } from "@clerk/nextjs"
+import { currentUser } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 // Получение списка пользователей
 export async function GET() {
-  const { userId } = auth()
-  if (!userId) {
+  const user = await currentUser()
+  if (!user) {
     return new NextResponse("Unauthorized", { status: 401 })
   }
 
   try {
     const currentUser = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id: user.id },
       select: { role: true }
     })
 
