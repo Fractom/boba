@@ -1,5 +1,4 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb"
-import { useTranslation } from "@/components/translation-provider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Home } from "lucide-react"
 import BolognaOverview from "@/components/bologna/bologna-overview"
@@ -8,15 +7,13 @@ import BolognaQualifications from "@/components/bologna/bologna-qualifications"
 import BolognaReports from "@/components/bologna/bologna-reports"
 
 export default function BolognaPage() {
-  const t = useTranslation()
-
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[
-        { label: "bologna_process", href: "/bologna" }
+        { label: "Bologna Process", href: "/bologna" }
       ]} />
 
-      <h1 className="text-3xl font-bold mb-6">{t("bologna_process")}</h1>
+      <h1 className="text-3xl font-bold mb-6">Bologna Process</h1>
       
       <div className="mb-12">
         <p className="text-lg text-gray-600">

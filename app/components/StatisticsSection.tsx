@@ -1,7 +1,6 @@
 'use client'
 
 import { Users, Award, Building2, Globe } from "lucide-react"
-import { useTranslation } from "@/components/translation-provider"
 
 function StatCard({
   icon,
@@ -22,8 +21,6 @@ function StatCard({
 }
 
 export function StatisticsSection() {
-  const t = useTranslation()
-  
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -31,22 +28,22 @@ export function StatisticsSection() {
           <StatCard
             icon={<Users className="h-8 w-8 text-blue-600" />}
             value="10,000+"
-            label={t("students_served")}
+            label="Students Served"
           />
           <StatCard
             icon={<Award className="h-8 w-8 text-blue-600" />}
             value="500+"
-            label={t("accredited_institutions")}
+            label="Accredited Institutions"
           />
           <StatCard
             icon={<Building2 className="h-8 w-8 text-blue-600" />}
             value="50+"
-            label={t("partner_countries")}
+            label="Partner Countries"
           />
           <StatCard
             icon={<Globe className="h-8 w-8 text-blue-600" />}
             value="100%"
-            label={t("satisfaction_rate")}
+            label="Satisfaction Rate"
           />
         </div>
       </div>

@@ -13,18 +13,15 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import NewsCard from "@/components/news/news-card"
 import FeaturedNewsCard from "@/components/news/featured-news-card"
-import { useTranslation } from "@/components/translation-provider"
 
 export default function NewsPage() {
-  const t = useTranslation()
-
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[
-        { label: "news", href: "/news" }
+        { label: "News", href: "/news" }
       ]} />
 
-      <h1 className="text-3xl font-bold mb-6">{t("news")}</h1>
+      <h1 className="text-3xl font-bold mb-6">News & Updates</h1>
 
       <div className="mb-12">
         <p className="text-lg text-gray-600">

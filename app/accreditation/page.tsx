@@ -1,5 +1,4 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb"
-import { useTranslation } from "@/components/translation-provider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Home } from "lucide-react"
 import AccreditationRegistry from "@/components/accreditation/accreditation-registry"
@@ -8,15 +7,13 @@ import AccreditationProcess from "@/components/accreditation/accreditation-proce
 import AccreditationReports from "@/components/accreditation/accreditation-reports"
 
 export default function AccreditationPage() {
-  const t = useTranslation()
-
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[
-        { label: "accreditation", href: "/accreditation" }
+        { label: "Accreditation", href: "/accreditation" }
       ]} />
 
-      <h1 className="text-3xl font-bold mb-6">{t("accreditation")}</h1>
+      <h1 className="text-3xl font-bold mb-6">Accreditation Services</h1>
       
       <div className="mb-12">
         <p className="text-lg text-gray-600">

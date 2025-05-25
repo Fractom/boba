@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { ChevronRight, Home } from "lucide-react"
-import { useTranslation } from "@/components/translation-provider"
 
 interface BreadcrumbProps {
   items?: {
@@ -42,8 +41,6 @@ export function BreadcrumbSeparator() {
 
 // Legacy support
 export function Breadcrumb({ items = [] }: BreadcrumbProps) {
-  const t = useTranslation()
-  
   return (
     <BreadcrumbList>
       <BreadcrumbItem>
@@ -55,7 +52,7 @@ export function Breadcrumb({ items = [] }: BreadcrumbProps) {
         <BreadcrumbItem key={item.href}>
           <BreadcrumbSeparator />
           <BreadcrumbLink href={item.href} isLast={index === items.length - 1}>
-            {t(item.label)}
+            {item.label}
           </BreadcrumbLink>
         </BreadcrumbItem>
       ))}

@@ -5,7 +5,6 @@ import Link from "next/link"
 import Image from "next/image"
 import type { Metadata } from "next"
 import { getNewsArticle, getNewsArticles } from "@/lib/news"
-import { useTranslation } from "@/components/translation-provider"
 
 type Props = {
   params: { id: string }
@@ -37,7 +36,6 @@ export async function generateStaticParams() {
 export default async function NewsArticlePage({ params }: Props) {
   const { id } = params
   const article = await getNewsArticle(id)
-  const t = useTranslation()
 
   if (!article) {
     return (
@@ -55,8 +53,8 @@ export default async function NewsArticlePage({ params }: Props) {
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[
-        { label: "news", href: "/news" },
-        { label: "news_article", href: `/news/${id}` }
+        { label: "News", href: "/news" },
+        { label: "Article", href: `/news/${id}` }
       ]} />
 
       <Button asChild variant="outline" className="mb-6">

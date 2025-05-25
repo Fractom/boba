@@ -10,7 +10,6 @@ import { Home, Mail, Phone, MapPin, Clock } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import ContactForm from "@/components/contact/contact-form"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { useTranslation } from "@/components/translation-provider"
 
 interface ContactCardProps {
   icon: React.ReactNode
@@ -43,15 +42,13 @@ const ContactCard: React.FC<ContactCardProps> = ({ icon, title, description, con
 }
 
 export default function ContactPage() {
-  const t = useTranslation()
-
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[
-        { label: "contact", href: "/contact" }
+        { label: "Contact", href: "/contact" }
       ]} />
 
-      <h1 className="text-3xl font-bold mb-6">{t("contact_us")}</h1>
+      <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
 
       <div className="mb-12">
         <p className="text-lg text-gray-600">
