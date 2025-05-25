@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { FileCheck, Users, Globe, BookOpen } from "lucide-react"
-import { useTranslation } from "@/components/translation-provider"
 
 function QuickLinkCard({ icon, title, link }: { icon: React.ReactNode; title: string; link: string }) {
   return (
@@ -16,30 +15,28 @@ function QuickLinkCard({ icon, title, link }: { icon: React.ReactNode; title: st
 }
 
 export function QuickLinksSection() {
-  const t = useTranslation()
-  
   return (
     <section className="py-8 bg-gray-50 border-b">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <QuickLinkCard
             icon={<FileCheck className="h-6 w-6 text-blue-600" />}
-            title={t("recognition_database")}
+            title="Recognition Database"
             link="/recognition/database"
           />
           <QuickLinkCard
             icon={<Users className="h-6 w-6 text-blue-600" />}
-            title={t("accredited_organizations")}
+            title="Accredited Organizations"
             link="/accreditation/registry"
           />
           <QuickLinkCard
             icon={<Globe className="h-6 w-6 text-blue-600" />}
-            title={t("bologna_process")}
+            title="Bologna Process"
             link="/bologna"
           />
           <QuickLinkCard
             icon={<BookOpen className="h-6 w-6 text-blue-600" />}
-            title={t("faq")}
+            title="FAQ"
             link="/faq"
           />
         </div>
